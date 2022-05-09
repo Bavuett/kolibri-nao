@@ -5,6 +5,9 @@ import 'package:kolibri/ui/home.dart';
 const color01 = Color(0xFFDE00FF);
 const color02 = Color(0xFFF8A6CD);
 
+const double pagesPadding = 10;
+int currentIndex = 0;
+
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(
