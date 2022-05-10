@@ -57,6 +57,15 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
+  fonts:
+     - family: CorporateS
+       fonts:
+         - asset: assets/fonts/Corporate.otf
+     - family: Halyard
+       fonts:
+         - asset: assets/fonts/Halyard.otf
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
