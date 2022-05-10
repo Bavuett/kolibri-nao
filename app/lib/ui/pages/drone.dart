@@ -15,23 +15,15 @@ class DroneState extends State<Drone> {
   Widget build(BuildContext context) {
     // Setting status and navigation bar colors.
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: color01,
       systemNavigationBarColor: color01,
       systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.dark,
     ));
 
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(pagesPadding),
         child: ListView(
-          children: const [
-            Text(
-              "Hello, Drone!",
-              style: TextStyle(fontFamily: "Halyard"),
-            )
-          ],
+          children: const [Text("Hello, Drone!")],
         ),
       ),
     );

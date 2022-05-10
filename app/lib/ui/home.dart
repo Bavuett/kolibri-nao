@@ -5,6 +5,8 @@ import 'package:kolibri/main.dart';
 import 'package:kolibri/ui/pages/robot.dart';
 import 'package:kolibri/ui/pages/drone.dart';
 
+int currentIndex = 0;
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -17,12 +19,12 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     // Setting status and navigation bar colors.
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: color01,
       systemNavigationBarColor: color01,
       systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.dark,
     ));
+
+    // Getting the Screen Size.
+    Size screenSize = MediaQuery.of(context).size;
 
     // Pages displayed by the app, which can be changed from the Bottom
     // Navigation Bar. These can be edited in /ui/pages/.
@@ -33,8 +35,7 @@ class HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kolibri App",
-            style: TextStyle(fontFamily: "CorporateS")),
+        title: const Text("Kolibri App"),
         centerTitle: true,
         elevation: 0,
         shape: const Border(

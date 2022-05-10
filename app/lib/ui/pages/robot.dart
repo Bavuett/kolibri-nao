@@ -15,24 +15,33 @@ class RobotState extends State<Robot> {
   Widget build(BuildContext context) {
     // Setting status and navigation bar colors.
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: color01,
       systemNavigationBarColor: color01,
       systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.dark,
     ));
 
+    // Getting the Screen Size.
+    // Size screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: Container(
+      body: ListView(
         padding: const EdgeInsets.all(pagesPadding),
-        child: ListView(
-          children: const [
-            Text(
-              "Hello, Robot!",
-              style: TextStyle(fontFamily: "Halyard"),
-            )
-          ],
-        ),
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                "Robot",
+                style: TextStyle(fontFamily: "CorporateS", fontSize: 32),
+              ),
+              Text("Control the NAO Robot with this list of commands."),
+            ],
+          ),
+          ElevatedButton(
+              onPressed: () {
+                debugPrint("Pressed");
+              },
+              child: Text("Tap me!"))
+        ],
       ),
     );
   }
