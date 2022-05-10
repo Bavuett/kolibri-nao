@@ -20,6 +20,8 @@ class HomeState extends State<Home> {
       statusBarColor: color01,
       systemNavigationBarColor: color01,
       systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.dark,
     ));
 
     // Pages displayed by the app, which can be changed from the Bottom
@@ -31,7 +33,8 @@ class HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kolibri App"),
+        title: const Text("Kolibri App",
+            style: TextStyle(fontFamily: "CorporateS")),
         centerTitle: true,
         elevation: 0,
         shape: const Border(
@@ -63,6 +66,8 @@ class HomeState extends State<Home> {
           elevation: 0,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.black54,
+          selectedLabelStyle: const TextStyle(fontFamily: "Halyard"),
+          unselectedLabelStyle: const TextStyle(fontFamily: "Halyard"),
           // Bottom Navigation Bar icons.
           items: const [
             BottomNavigationBarItem(

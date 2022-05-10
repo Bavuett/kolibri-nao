@@ -59,12 +59,12 @@ flutter:
 
 
   fonts:
-     - family: CorporateS
-       fonts:
-         - asset: assets/fonts/Corporate.otf
-     - family: Halyard
-       fonts:
-         - asset: assets/fonts/Halyard.otf
+    - family: CorporateS
+      fonts:
+        - asset: assets/fonts/Corporate.otf
+    - family: Halyard
+      fonts:
+        - asset: assets/fonts/Halyard.otf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
