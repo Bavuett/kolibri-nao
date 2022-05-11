@@ -20,7 +20,7 @@ class RobotState extends State<Robot> {
     ));
 
     // Getting the Screen Size.
-    // Size screenSize = MediaQuery.of(context).size;
+    Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       body: ListView(
@@ -31,16 +31,44 @@ class RobotState extends State<Robot> {
             children: const [
               Text(
                 "Robot",
-                style: TextStyle(fontFamily: "CorporateS", fontSize: 32),
+                style: TextStyle(
+                  fontFamily: "CorporateS",
+                  fontSize: 32,
+                ),
               ),
-              Text("Control the NAO Robot with this list of commands."),
+              Text("Control the Robot with this list of commands."),
             ],
           ),
-          ElevatedButton(
-              onPressed: () {
-                debugPrint("Pressed");
-              },
-              child: Text("Tap me!"))
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "Introductions",
+                  style: TextStyle(fontFamily: "CorporateS", fontSize: 24),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: null,
+                      child: Text("Tap me!"),
+                    ),
+                    Container(
+                      width: screenSize.width * 0.05,
+                    ),
+                    ElevatedButton(
+                      onPressed: null,
+                      child: Text("Tap me!"),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );

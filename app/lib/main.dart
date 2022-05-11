@@ -4,6 +4,7 @@ import 'package:kolibri/ui/home.dart';
 // Color Scheme.
 const color01 = Color(0xFFDE00FF);
 const color02 = Color(0xFFF8A6CD);
+const color03 = Color(0xFFFFC900);
 
 const double pagesPadding = 14;
 
@@ -34,7 +35,7 @@ void main() {
             textStyle: const TextStyle(
               fontFamily: "Halyard",
             ),
-            primary: Color.fromARGB(255, 214, 164, 0),
+            primary: color03,
             onPrimary: Colors.black,
             elevation: 0,
             side: const BorderSide(
@@ -44,6 +45,10 @@ void main() {
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
+            ),
+            visualDensity: VisualDensity(
+              horizontal: VisualDensity.maximumDensity,
+              vertical: VisualDensity.maximumDensity,
             )),
       ),
     ),
