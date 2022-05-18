@@ -15,14 +15,14 @@ void main() {
       appBarTheme: const AppBarTheme().copyWith(
         titleTextStyle: const TextStyle(
           fontFamily: "CorporateS",
-          fontSize: 18.5,
+          fontSize: 20.5,
           color: Colors.black,
         ),
       ),
       // Setting the default fonts.
       textTheme: const TextTheme().copyWith(
-        bodyText1: const TextStyle(fontFamily: "Halyard"),
-        bodyText2: const TextStyle(fontFamily: "Halyard"),
+        bodyText1: const TextStyle(fontFamily: "Halyard", fontSize: 18),
+        bodyText2: const TextStyle(fontFamily: "Halyard", fontSize: 18),
       ),
       // Theming the rest of the app.
       colorScheme: ColorScheme.fromSwatch().copyWith(

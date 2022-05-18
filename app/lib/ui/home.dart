@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:kolibri/main.dart';
 import 'package:kolibri/ui/pages/robot.dart';
-import 'package:kolibri/ui/pages/drone.dart';
+import 'package:kolibri/ui/pages/info.dart';
 
 int currentIndex = 0;
 
@@ -30,12 +30,12 @@ class HomeState extends State<Home> {
     // Navigation Bar. These can be edited in /ui/pages/.
     final appPages = [
       const Robot(),
-      const Drone(),
+      const Info(),
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kolibri App"),
+        title: const Text("Kolibri"),
         centerTitle: true,
         elevation: 0,
         shape: const Border(
@@ -76,8 +76,8 @@ class HomeState extends State<Home> {
               label: "Robot",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.airplanemode_active_rounded),
-              label: "Drone",
+              icon: Icon(Icons.info_rounded),
+              label: "About",
             ),
           ],
           onTap: (index) => setState(() => currentIndex = index),

@@ -19,6 +19,9 @@ class DroneState extends State<Drone> {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
 
+    // Getting the Screen Size.
+    Size screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.all(pagesPadding),
@@ -27,7 +30,7 @@ class DroneState extends State<Drone> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               Text(
-                "Drone",
+                "Robot",
                 style: TextStyle(
                   fontFamily: "CorporateS",
                   fontSize: 32,
@@ -37,25 +40,35 @@ class DroneState extends State<Drone> {
             ],
           ),
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 5),
             alignment: Alignment.topLeft,
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text("Introductions"),
+                Text(
+                  "Introductions",
+                  style: TextStyle(fontFamily: "CorporateS", fontSize: 24),
+                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        debugPrint("Pressed");
-                      },
-                      child: const Text("Tap me!"),
+                      onPressed: null,
+                      child: Text("Tap me!"),
+                    ),
+                    Container(
+                      width: screenSize.width * 0.05,
+                    ),
+                    ElevatedButton(
+                      onPressed: null,
+                      child: Text("Tap me!"),
                     ),
                   ],
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );
