@@ -1,4 +1,8 @@
 # Kolibri - NAO Challenge 2022.
-Kolibri App is the app for the Kolibri NAO Challenge team. This app is going to be used to control the drone in the final challenge. Currently in development.
+Kolibri is the repository containing all the source code used by the team's projects. From the mobile app to the Arduino Sketches, you can find it all here.
 
-Source code located in the "app" folder.
+### What do the directories contain?
+
+ - app: Source code for the mobile app used to control NAO Robot;
+ - arduino: Source code for the various Arduino Sketches;
+ - assets: Various graphical (and non) assets used for the project.
