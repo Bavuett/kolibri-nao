@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:kolibri/main.dart';
+import 'package:kolibri/ui/pages/bluetooth/deviceselect.dart';
 
 class Robot extends StatefulWidget {
   const Robot({Key? key}) : super(key: key);
@@ -46,16 +47,22 @@ class RobotState extends State<Robot> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Introductions",
                   style: TextStyle(fontFamily: "CorporateS", fontSize: 24),
                 ),
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(
-                      onPressed: null,
-                      child: Text("Tap me!"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DeviceSelect()));
+                      },
+                      child: const Text("Connect to NAO"),
                     ),
                     Container(
                       width: screenSize.width * 0.05,

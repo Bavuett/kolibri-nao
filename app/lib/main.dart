@@ -28,6 +28,9 @@ void main() {
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: color01,
       ),
+      iconTheme: IconThemeData(
+        color: Colors.black,
+      ),
       scaffoldBackgroundColor: color02,
       // Theming button.
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -46,7 +49,7 @@ void main() {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
-            visualDensity: VisualDensity(
+            visualDensity: const VisualDensity(
               horizontal: VisualDensity.maximumDensity,
               vertical: VisualDensity.maximumDensity,
             )),

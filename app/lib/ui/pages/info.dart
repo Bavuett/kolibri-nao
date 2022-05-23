@@ -7,10 +7,10 @@ class Info extends StatefulWidget {
   const Info({Key? key}) : super(key: key);
 
   @override
-  DroneState createState() => DroneState();
+  InfoState createState() => InfoState();
 }
 
-class DroneState extends State<Info> {
+class InfoState extends State<Info> {
   @override
   Widget build(BuildContext context) {
     // Setting status and navigation bar colors.
