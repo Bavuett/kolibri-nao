@@ -1,3 +1,4 @@
 {
+    "sketch": "servo\\servo.ino",
     "board": "arduino:avr:uno"
 }
