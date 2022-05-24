@@ -15,7 +15,7 @@ void main() {
       appBarTheme: const AppBarTheme().copyWith(
         titleTextStyle: const TextStyle(
           fontFamily: "CorporateS",
-          fontSize: 20.5,
+          fontSize: 20,
           color: Colors.black,
         ),
       ),
@@ -28,7 +28,7 @@ void main() {
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: color01,
       ),
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Colors.black,
       ),
       scaffoldBackgroundColor: color02,

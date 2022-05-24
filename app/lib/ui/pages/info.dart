@@ -23,6 +23,14 @@ class InfoState extends State<Info> {
     Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Kolibri"),
+        centerTitle: true,
+        elevation: 0,
+        shape: const Border(
+          bottom: BorderSide(width: 2, color: Colors.black),
+        ),
+      ),
       body: ListView(
         padding: const EdgeInsets.all(pagesPadding),
         children: [

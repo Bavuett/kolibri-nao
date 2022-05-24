@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:kolibri/main.dart';
-import 'package:kolibri/ui/pages/bluetooth/deviceselect.dart';
+import 'package:kolibri/ui/pages/bluetooth/connect.dart';
 
 class Robot extends StatefulWidget {
   const Robot({Key? key}) : super(key: key);
@@ -60,7 +60,7 @@ class RobotState extends State<Robot> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DeviceSelect()));
+                                builder: (context) => DeviceSelect()));
                       },
                       child: const Text("Connect to NAO"),
                     ),

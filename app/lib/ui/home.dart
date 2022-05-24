@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:kolibri/main.dart';
-import 'package:kolibri/ui/pages/robot.dart';
 import 'package:kolibri/ui/pages/info.dart';
+import 'package:kolibri/ui/pages/bluetooth/connect.dart';
 
 int currentIndex = 0;
 
@@ -29,20 +29,11 @@ class HomeState extends State<Home> {
     // Pages displayed by the app, which can be changed from the Bottom
     // Navigation Bar. These can be edited in /ui/pages/.
     final appPages = [
-      const Robot(),
+      DeviceSelect(),
       const Info(),
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Kolibri"),
-        centerTitle: true,
-        elevation: 0,
-        shape: const Border(
-          bottom: BorderSide(width: 2, color: Colors.black),
-        ),
-      ),
-
       // What the app will show. Indexed Stack saves all the pages so they keep
       // their state while they are not being used.
       body: IndexedStack(
