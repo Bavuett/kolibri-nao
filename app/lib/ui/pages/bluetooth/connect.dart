@@ -60,7 +60,7 @@ class DeviceSelectState extends State<DeviceSelect> {
     } else {
       name = 'N/A';
     }
-    return Text(name);
+    return Text(name, style: const TextStyle(fontFamily: "Halyard"));
   }
 
   Widget leading(ScanResult r) {
