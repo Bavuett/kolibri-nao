@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:kolibri/main.dart';
 import 'package:kolibri/ui/pages/info.dart';
-import 'package:kolibri/ui/pages/bluetooth/connect.dart';
+import 'package:kolibri/ui/pages/socket/connect.dart';
 
 int currentIndex = 0;
 
@@ -29,7 +29,7 @@ class HomeState extends State<Home> {
     // Pages displayed by the app, which can be changed from the Bottom
     // Navigation Bar. These can be edited in /ui/pages/.
     final appPages = [
-      DeviceSelect(),
+      Connect(),
       const Info(),
     ];
 

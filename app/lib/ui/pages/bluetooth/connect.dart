@@ -4,7 +4,7 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:kolibri/main.dart';
 
 class DeviceSelect extends StatefulWidget {
-  DeviceSelect({Key? key}) : super(key: key);
+  const DeviceSelect({Key? key}) : super(key: key);
 
   @override
   DeviceSelectState createState() => DeviceSelectState();
