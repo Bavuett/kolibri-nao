@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:kolibri/main.dart';
-import 'package:kolibri/ui/pages/info.dart';
-import 'package:kolibri/ui/pages/socket/connect.dart';
+import 'package:kolibri/ui/control.dart';
+import 'package:kolibri/ui/info.dart';
 
 int currentIndex = 0;
 

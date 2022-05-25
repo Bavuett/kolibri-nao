@@ -18,23 +18,29 @@ class ConnectState extends State<Connect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            ElevatedButton(
-              child: Text('Connect'),
-              onPressed: () {
-                connect();
-              },
-            ),
-            ElevatedButton(
-              child: Text('Send Data'),
-              onPressed: () {
-                sendData();
-              },
-            ),
-          ],
+      appBar: AppBar(
+        title: const Text("Connect to your server"),
+        centerTitle: true,
+        elevation: 0,
+        shape: const Border(
+          bottom: BorderSide(width: 2, color: Colors.black),
         ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          ElevatedButton(
+            child: Text('Connect'),
+            onPressed: () {
+              connect();
+            },
+          ),
+          ElevatedButton(
+            child: Text('Send Data'),
+            onPressed: () {
+              sendData();
+            },
+          ),
+        ],
       ),
     );
   }
