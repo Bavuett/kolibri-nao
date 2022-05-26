@@ -1,8 +1,10 @@
 import 'dart:io';
 
-import 'package:kolibri/main.dart';
-
 import 'package:flutter/material.dart';
+import 'package:kolibri/ui/control.dart';
+import 'package:string_validator/string_validator.dart';
+
+import 'package:kolibri/main.dart';
 
 class Connect extends StatefulWidget {
   const Connect({Key? key}) : super(key: key);
@@ -14,6 +16,8 @@ class Connect extends StatefulWidget {
 class ConnectState extends State<Connect> {
   Socket? socket;
   String? name;
+
+  String ipAddress = "0.0.0.0";
 
   @override
   void initState() {
@@ -48,22 +52,33 @@ class ConnectState extends State<Connect> {
                   padding: EdgeInsets.only(bottom: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Connect to server"),
+                    children: const <Widget>[
                       Text(
-                          "Enter the server's IP address below to connect. Make sure Wi-Fi is enabled.")
+                        "What is the IP?",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontFamily: "CorporateS",
+                        ),
+                      ),
+                      Text(
+                        "Enter the server's IP address below to connect. Make sure Wi-Fi is enabled.",
+                      )
                     ],
                   ),
                 ),
                 TextField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    ipAddress = value;
+                    debugPrint(ipAddress);
+                    debugPrint(isIP(ipAddress).toString());
+                  },
                   maxLength: 15,
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
                   style: const TextStyle(
                       color: Colors.black, fontFamily: "Halyard"),
                   decoration: InputDecoration(
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.wifi,
                         color: Colors.black,
                       ),
@@ -75,21 +90,9 @@ class ConnectState extends State<Connect> {
                         color: Colors.black,
                         fontFamily: "Halyard",
                       ),
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
                           borderRadius: BorderRadius.all(Radius.circular(15)))),
-                ),
-                ElevatedButton(
-                  child: Text('Connect'),
-                  onPressed: () {
-                    connectToServer();
-                  },
-                ),
-                ElevatedButton(
-                  child: Text('Send Data'),
-                  onPressed: () {
-                    sendData();
-                  },
                 ),
               ],
             ),
@@ -97,7 +100,7 @@ class ConnectState extends State<Connect> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: beginConnection,
         backgroundColor: color01,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -105,6 +108,15 @@ class ConnectState extends State<Connect> {
           side: BorderSide(color: Colors.black, width: 2),
         ),
         child: const Icon(Icons.wifi),
+      ),
+    );
+  }
+
+  void beginConnection() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: ((context) => Control(deviceIP: ipAddress)),
       ),
     );
   }
