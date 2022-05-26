@@ -33,7 +33,7 @@ class ControlState extends State<Control> {
           ElevatedButton(
             child: Text('Control'),
             onPressed: () {
-              connnect();
+              connect();
             },
           ),
           ElevatedButton(
