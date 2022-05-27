@@ -14,14 +14,11 @@ class Connect extends StatefulWidget {
 }
 
 class ConnectState extends State<Connect> {
-  Socket? socket;
-  String? name;
-
-  String ipAddress = "0.0.0.0";
+  String deviceIP = "0.0.0.0";
 
   @override
   void initState() {
-    String ipAddress = "0.0.0.0";
+    String deviceIP = "0.0.0.0";
 
     super.initState();
   }
@@ -68,9 +65,9 @@ class ConnectState extends State<Connect> {
                 ),
                 TextField(
                   onChanged: (value) {
-                    ipAddress = value;
-                    debugPrint(ipAddress);
-                    debugPrint(isIP(ipAddress).toString());
+                    deviceIP = value;
+                    debugPrint(deviceIP);
+                    debugPrint(isIP(deviceIP).toString());
                   },
                   maxLength: 15,
                   keyboardType:
@@ -113,27 +110,20 @@ class ConnectState extends State<Connect> {
   }
 
   void beginConnection() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: ((context) => Control(deviceIP: ipAddress)),
-      ),
-    );
-  }
-
-  void connectToServer() {
-    Socket.connect("192.168.68.3", 8080).then((Socket sock) {
-      socket = sock;
-      socket!.listen(
-        (data) {
-          final serverResponse = String.fromCharCodes(data);
-          print('Server: $serverResponse');
-        },
+    if (isIP(deviceIP) == true) {
+      Socket.connect(deviceIP, 8080).then((Socket sock) {
+        Socket socket = sock;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => Control(socket: socket, deviceIP: deviceIP)),
+          ),
+        );
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        generateSnackbar("Make sure your IP is valid!"),
       );
-    });
-  }
-
-  void sendData() {
-    socket!.write("SCEMOOO!");
+    }
   }
 }

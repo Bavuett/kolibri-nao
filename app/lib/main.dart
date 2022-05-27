@@ -47,7 +47,7 @@ void main() {
               width: 1.85,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(15),
             ),
             visualDensity: const VisualDensity(
               horizontal: VisualDensity.maximumDensity,
@@ -59,4 +59,23 @@ void main() {
     title: "Kolibri App",
     home: const Home(),
   ));
+}
+
+SnackBar generateSnackbar(String message) {
+  Widget snackContent = Text(
+    message,
+    style: const TextStyle(fontFamily: "Halyard", color: Colors.black),
+  );
+  SnackBar snackbar = SnackBar(
+    content: snackContent,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: color01,
+    elevation: 0,
+    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(width: 2, color: Colors.black)),
+  );
+
+  return snackbar;
 }
