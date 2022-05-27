@@ -34,6 +34,7 @@ class ControlState extends State<Control> {
         title: Text(ipAddress),
         centerTitle: true,
         elevation: 0,
+        automaticallyImplyLeading: false,
         shape: const Border(
           bottom: BorderSide(width: 2, color: Colors.black),
         ),
@@ -73,19 +74,17 @@ class ControlState extends State<Control> {
                     debugPrint(ipAddress);
                   },
                   maxLength: 15,
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
                   style: const TextStyle(
                       color: Colors.black, fontFamily: "Halyard"),
                   decoration: InputDecoration(
                       prefixIcon: const Icon(
-                        Icons.wifi,
+                        Icons.chat_bubble,
                         color: Colors.black,
                       ),
                       counter: Container(),
                       filled: true,
                       fillColor: Color.fromARGB(11, 0, 0, 0),
-                      labelText: "Server's IP address",
+                      labelText: "Message",
                       labelStyle: const TextStyle(
                         color: Colors.black,
                         fontFamily: "Halyard",
@@ -99,22 +98,39 @@ class ControlState extends State<Control> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: disconnect,
+        backgroundColor: color01,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        shape: const CircleBorder(
+          side: BorderSide(color: Colors.black, width: 2),
+        ),
+        child: const Icon(Icons.wifi_off_rounded),
+      ),
     );
   }
 
   void connect(String deviceIP) {
-    const snackbar = SnackBar(content: Text("Connected!"));
-
     Socket.connect(deviceIP, 8080).then((Socket sock) {
       socket = sock;
+      if (socket == null) {
+        debugPrint("Socket is Null");
+      }
       socket!.listen(
         (data) {
           final serverResponse = String.fromCharCodes(data);
-          print('Server: $serverResponse');
-          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+          debugPrint('Server: $serverResponse');
         },
       );
     });
+  }
+
+  void disconnect() {
+    if (socket != null) {
+      socket!.close();
+    }
+    Navigator.pop(context);
   }
 
   void sendData() {
