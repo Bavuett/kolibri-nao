@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 import 'dart:io';
 
 import 'package:kolibri/main.dart';
@@ -46,13 +48,13 @@ class ControlState extends State<Control> {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: ListView(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(bottom: 15),
+                    padding: const EdgeInsets.only(bottom: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const <Widget>[
@@ -73,7 +75,6 @@ class ControlState extends State<Control> {
                     onChanged: (value) {
                       message = value;
                     },
-                    maxLength: 15,
                     style: const TextStyle(
                         color: Colors.black, fontFamily: "Halyard"),
                     decoration: InputDecoration(
@@ -83,7 +84,7 @@ class ControlState extends State<Control> {
                         ),
                         counter: Container(),
                         filled: true,
-                        fillColor: Color.fromARGB(11, 0, 0, 0),
+                        fillColor: const Color.fromARGB(11, 0, 0, 0),
                         labelText: "Message",
                         labelStyle: const TextStyle(
                           color: Colors.black,
@@ -145,6 +146,10 @@ class ControlState extends State<Control> {
   }
 
   void disconnect(Socket socket) {
+    socket.write("close");
+    ScaffoldMessenger.of(context).showSnackBar(
+      generateSnackbar("Disconnecting to server and closing it."),
+    );
     socket.close();
     Navigator.pop(context);
   }

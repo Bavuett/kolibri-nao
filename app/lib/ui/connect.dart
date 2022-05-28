@@ -19,6 +19,7 @@ class ConnectState extends State<Connect> {
   @override
   void initState() {
     String deviceIP = "0.0.0.0";
+    debugPrint("Default IP: " + deviceIP);
 
     super.initState();
   }
@@ -39,14 +40,14 @@ class ConnectState extends State<Connect> {
           FocusManager.instance.primaryFocus?.unfocus();
         },
         child: ListView(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
                   alignment: Alignment.topLeft,
-                  padding: EdgeInsets.only(bottom: 15),
+                  padding: const EdgeInsets.only(bottom: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const <Widget>[
@@ -81,7 +82,7 @@ class ConnectState extends State<Connect> {
                       ),
                       counter: Container(),
                       filled: true,
-                      fillColor: Color.fromARGB(11, 0, 0, 0),
+                      fillColor: const Color.fromARGB(11, 0, 0, 0),
                       labelText: "Server's IP address",
                       labelStyle: const TextStyle(
                         color: Colors.black,

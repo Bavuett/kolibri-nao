@@ -20,6 +20,7 @@ class InfoState extends State<Info> {
     ));
 
     // Getting the Screen Size.
+    // ignore: unused_local_variable
     Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(

@@ -24,12 +24,13 @@ class HomeState extends State<Home> {
     ));
 
     // Getting the Screen Size.
+    // ignore: unused_local_variable
     Size screenSize = MediaQuery.of(context).size;
 
     // Pages displayed by the app, which can be changed from the Bottom
     // Navigation Bar. These can be edited in /ui/pages/.
     final appPages = [
-      Connect(),
+      const Connect(),
       const Info(),
     ];
 
