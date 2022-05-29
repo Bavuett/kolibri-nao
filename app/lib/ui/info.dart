@@ -33,7 +33,7 @@ class InfoState extends State<Info> {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(pagesPadding),
+        padding: const EdgeInsets.all(20),
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +42,7 @@ class InfoState extends State<Info> {
                 "Kolibri",
                 style: TextStyle(
                   fontFamily: "CorporateS",
-                  fontSize: 32,
+                  fontSize: 24,
                 ),
               ),
               Text("NAO Challenge 2022.")

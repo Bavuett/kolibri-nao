@@ -14,11 +14,11 @@ class Connect extends StatefulWidget {
 }
 
 class ConnectState extends State<Connect> {
-  String deviceIP = "0.0.0.0";
+  String deviceIP = "";
 
   @override
   void initState() {
-    String deviceIP = "0.0.0.0";
+    String deviceIP = "";
     debugPrint("Default IP: " + deviceIP);
 
     super.initState();
@@ -28,7 +28,7 @@ class ConnectState extends State<Connect> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Connect to your server"),
+        title: const Text("Connettiti a NAO"),
         centerTitle: true,
         elevation: 0,
         shape: const Border(
@@ -52,23 +52,21 @@ class ConnectState extends State<Connect> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const <Widget>[
                       Text(
-                        "What is the IP?",
+                        "Qual è l'IP?",
                         style: TextStyle(
                           fontSize: 24,
                           fontFamily: "CorporateS",
                         ),
                       ),
                       Text(
-                        "Enter the server's IP address below to connect. Make sure Wi-Fi is enabled.",
-                      )
+                        "Inserisci l'IP di NAO qui sotto per connetterti. Assicurati che il Wi-Fi sia attivo e che tu sia collegato alla stessa rete di NAO.",
+                      ),
                     ],
                   ),
                 ),
                 TextField(
                   onChanged: (value) {
                     deviceIP = value;
-                    debugPrint(deviceIP);
-                    debugPrint(isIP(deviceIP).toString());
                   },
                   maxLength: 15,
                   keyboardType:
@@ -83,7 +81,7 @@ class ConnectState extends State<Connect> {
                       counter: Container(),
                       filled: true,
                       fillColor: const Color.fromARGB(11, 0, 0, 0),
-                      labelText: "Server's IP address",
+                      labelText: "Indirizzo IP di NAO",
                       labelStyle: const TextStyle(
                         color: Colors.black,
                         fontFamily: "Halyard",
@@ -112,7 +110,8 @@ class ConnectState extends State<Connect> {
 
   void beginConnection() {
     if (isIP(deviceIP) == true) {
-      Socket.connect(deviceIP, 8080).then((Socket sock) {
+      Socket.connect(deviceIP, 8080, timeout: const Duration(seconds: 5))
+          .then((Socket sock) {
         Socket socket = sock;
         Navigator.push(
           context,
@@ -123,7 +122,7 @@ class ConnectState extends State<Connect> {
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        generateSnackbar("Make sure your IP is valid!"),
+        generateErrorSnackbar("Assicurati che l'IP sia valido!"),
       );
     }
   }
