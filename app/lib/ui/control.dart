@@ -7,6 +7,7 @@ import 'package:kolibri/ui/showtime.dart';
 import 'package:flutter/material.dart';
 
 class Control extends StatefulWidget {
+  // Require Socket and IP as the page's parameters.
   const Control({Key? key, required this.socket, required this.deviceIP})
       : super(key: key);
 

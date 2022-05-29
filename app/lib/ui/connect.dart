@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:kolibri/ui/control.dart';
 import 'package:string_validator/string_validator.dart';
 
 import 'package:kolibri/main.dart';
+import 'package:kolibri/ui/control.dart';
 
 class Connect extends StatefulWidget {
   const Connect({Key? key}) : super(key: key);

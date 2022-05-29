@@ -1,6 +1,3 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
 
 class Showtime extends StatelessWidget {
@@ -10,15 +7,16 @@ class Showtime extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Showtime"),
+        title: const Text("Ecco l'elicottero!"),
         centerTitle: true,
         elevation: 0,
-        automaticallyImplyLeading: false,
         shape: const Border(
           bottom: BorderSide(width: 2, color: Colors.black),
         ),
       ),
-      body: Text("Sos"),
+      body: Center(
+        child: Image.asset("assets/gifs/gif.gif"),
+      ),
     );
   }
 }
