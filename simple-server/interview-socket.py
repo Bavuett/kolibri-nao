@@ -13,7 +13,11 @@ class MyClass(GeneratedClass):
         self.tts = ALProxy('ALTextToSpeech')
         self.ttsStop = ALProxy('ALTextToSpeech', True)
 
+    
+
+
     def onLoad(self):
+
         self.bIsRunning = False
         self.ids = []
         active = True
@@ -36,10 +40,12 @@ class MyClass(GeneratedClass):
             data = client.recv(2048)
 
             while len(data):
-                self.log("Client sent the data : {}".format(data))
-                client.send(data.upper())
 
                 received = data.decode("utf8")
+                received = received.lower()
+                
+                self.log("Client sent the data : {}".format(str(received)))
+
 
                 if received == "":
                     self.log(received)
@@ -48,13 +54,29 @@ class MyClass(GeneratedClass):
                     self.ids.append(id)
                     active = False
                     self.log("Closing the Socket.")
-                elif received == "quando sei nato":
-                    id = self.tts.pCall("say", str("Nacqui nel 1891 a Popoli, comune allora della provincia dell Aquila, oggi di Pescara in Abruzzo, da Giacomo e Anna De Michele; il palazzo della mia famiglia si trova sul corso Gramsci, al tempo corso Vittorio Emanuele, allangolo con via Venezia"))
+                elif received == "quando sei nato?":
+                    id = self.tts.pCall("say", str("Nacqui nel 1891"))
                     self.ids.append(id)
-                elif received == "dove hai studiato":
-                    id = self.tts.pCall("say", str("Frequentai il Regio Istituto Tecnico Ferdinando Galiani di Chieti, diplomandomi nel 1909 e volendo intraprendere studi ingegneristici, mi trasferì a Torino iscrivendomi al Regio Istituto Superiore dIngegneria che allepoca rappresentava il massimo nel campo dellingegneria meccanica. Mi laureai nel 1914 in ingegneria industriale meccanica al Politecnico di Torino."))
+                elif received == "dove sei nato?":
+                    id = self.tts.pCall("say", str("Nacqui nel 1891 a Popoli, comune allora della provincia dell Aquila, oggi di Pescara in Abruzzo,"))
+                elif received == "dove abitavi?":
+                    id = self.tts.pCall("say", str("Il palazzo della mia famiglia si trova sul corso Gramsci, al tempo corso Vittorio Emanuele, allangolo con via Venezia"))
+                elif received == "dove hai studiato?":
+                    id = self.tts.pCall("say", str("Frequentai l'Istituto Tecnico Ferdinando Galiani di Chieti,in seguito al diploma mi trasferì a Torino iscrivendomi al Regio Istituto Superiore dIngegneria che allepoca rappresentava il massimo nel campo dellingegneria meccanica."))
                     self.ids.append(id)
-                
+                elif received == "quali sono state le tue creazioni?":
+                    id = self.tts.pCall("say", str("Le mie creazioni principali sono stati i miei elicotteri e l'iconica Vespa, oggi però vi vorrei parlare dei miei elicotteri. Ti va bene? Rispondimi con si o no"))
+                    data = client.recv(2048)
+                    received = data.decode("utf8")
+                    received = received.lower()
+                    if received == "si" or received == "sì":
+                        id = self.tts.pCall("say", str("Il mio ultimo prototipo è stato il D'AT 3, commissionatomi dal Ministrero dell'Aeronautica Militare per un importo da seicentomila lire, con il quale riuscii a conseguire i seguenti record, durata del volo con ritorno senza scalo di 8 minuti e 45 secondi, distanza in linea retta senza scalo di metri  1078,60, altezza sul punto di partenza di metri 18"))
+                    if received == "no":
+                        id = self.tts.pCall("say", str("Va bene, sarà per la prossima."))
+                elif received == "mostrami il tuo elicottero":
+                    id = self.tts.pCall("say", str("Ok, spero ti piaccia!"))
+                    client.send(bytes("showtime"))
+
                 data = client.recv(2048)
             id = self.tts.pCall("say", str("App disconessa"))
             self.ids.append(id)
@@ -91,3 +113,4 @@ class MyClass(GeneratedClass):
 
     def processing(self):
         pass
+    
