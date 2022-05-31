@@ -25,7 +25,7 @@ class InfoState extends State<Info> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kolibri"),
+        title: const Text("Informazioni su Kolibri"),
         centerTitle: true,
         elevation: 0,
         shape: const Border(
@@ -33,19 +33,27 @@ class InfoState extends State<Info> {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(pagesPadding),
+        padding: const EdgeInsets.all(20),
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "Kolibri",
+            children: <Widget>[
+              const Text(
+                "Kolibri: NAO Challenge 2022",
                 style: TextStyle(
                   fontFamily: "CorporateS",
-                  fontSize: 32,
+                  fontSize: 24,
                 ),
               ),
-              Text("NAO Challenge 2022.")
+              const Text("v1.0"),
+              Container(padding: const EdgeInsets.symmetric(vertical: 5)),
+              const Divider(),
+              Container(padding: const EdgeInsets.symmetric(vertical: 5)),
+              const Text(
+                  "Kolibri è l'app del team Kolibri della NAO Challenge 2022. Questa app ti permette di controllare il robot NAO nella sfida finale."),
+              Container(padding: const EdgeInsets.symmetric(vertical: 10)),
+              const Text(
+                  "Collegati a NAO utilizzando il suo Indirizzo IP, chatta con lui, e divertiti scoprendo la storia di Corradino d'Ascanio con NAO!"),
             ],
           ),
         ],

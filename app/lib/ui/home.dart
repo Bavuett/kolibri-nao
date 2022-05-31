@@ -69,7 +69,7 @@ class HomeState extends State<Home> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.info_rounded),
-              label: "About",
+              label: "Informazioni",
             ),
           ],
           onTap: (index) => setState(() => currentIndex = index),

@@ -1,12 +1,13 @@
 // ignore_for_file: unnecessary_this
-
 import 'dart:io';
 
 import 'package:kolibri/main.dart';
+import 'package:kolibri/ui/showtime.dart';
 
 import 'package:flutter/material.dart';
 
 class Control extends StatefulWidget {
+  // Require Socket and IP as the page's parameters.
   const Control({Key? key, required this.socket, required this.deviceIP})
       : super(key: key);
 
@@ -24,6 +25,9 @@ class ControlState extends State<Control> {
 
   @override
   void initState() {
+    // Begin listening for messages from the server when the
+    // page is loaded.
+    this.listen(widget.socket);
     super.initState();
   }
 
@@ -59,14 +63,14 @@ class ControlState extends State<Control> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const <Widget>[
                         Text(
-                          "Connected!",
+                          "Connesso!",
                           style: TextStyle(
                             fontSize: 24,
                             fontFamily: "CorporateS",
                           ),
                         ),
                         Text(
-                          "You're connected to the server. Send some messages!",
+                          "Sei connesso a NAO. Invia dei messaggi!",
                         )
                       ],
                     ),
@@ -85,7 +89,7 @@ class ControlState extends State<Control> {
                         counter: Container(),
                         filled: true,
                         fillColor: const Color.fromARGB(11, 0, 0, 0),
-                        labelText: "Message",
+                        labelText: "Messaggio",
                         labelStyle: const TextStyle(
                           color: Colors.black,
                           fontFamily: "Halyard",
@@ -99,7 +103,30 @@ class ControlState extends State<Control> {
                     onPressed: () {
                       sendToServer(socket, message);
                     },
-                    child: const Text("Send"),
+                    child: const Text("Invia"),
+                  ),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10)),
+                  const Divider(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          "Cosa posso dire?",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontFamily: "CorporateS",
+                          ),
+                        ),
+                        Text("NAO comprende i seguenti comandi:"),
+                        Text(" - Quando sei nato?"),
+                        Text(" - Dove sei nato?"),
+                        Text(" - Dove abitavi?"),
+                        Text(" - Quali sono state le tue creazioni?"),
+                        Text(" - Mostrami il tuo elicottero"),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -126,31 +153,57 @@ class ControlState extends State<Control> {
     debugPrint("Sending to server: " + message);
     socket.write(message);
     ScaffoldMessenger.of(context).showSnackBar(
-      generateSnackbar("Sent to Server: " + message),
+      generateSnackbar("Ho inviato a NAO: " + message),
     );
+  }
 
-    socket.listen((data) {
-      debugPrint("Server responded: " + String.fromCharCodes(data));
-      String response = String.fromCharCodes(data);
-      ScaffoldMessenger.of(context).showSnackBar(
-        generateSnackbar("Server sent me: " + response),
-      );
-    });
+  void listen(Socket socket) async {
+    socket.listen(
+      (data) {
+        debugPrint("Server responded: " + String.fromCharCodes(data));
+        String response = String.fromCharCodes(data);
+        ScaffoldMessenger.of(context).showSnackBar(
+          generateSnackbar("NAO mi ha inviato: " + response),
+        );
 
-    socket.handleError((err) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        generateSnackbar("Whoops! " + err),
-      );
-      Navigator.pop(context);
-    });
+        if (response == "showtime") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (((context) => const Showtime())),
+              maintainState: true,
+            ),
+          );
+        }
+      },
+
+      // Code to call on server error.
+      onError: (serverError) {
+        debugPrint("Ho cacato: " + serverError);
+        socket.destroy();
+        ScaffoldMessenger.of(context).showSnackBar(
+          generateErrorSnackbar(
+            "Whoops! Ho dovuto disconettermi da NAO a causa di un errore.",
+          ),
+        );
+        Navigator.pop(context);
+      },
+
+      // Code to call on server disconnection.
+      onDone: () {
+        this.disconnect(socket);
+      },
+    );
   }
 
   void disconnect(Socket socket) {
     socket.write("close");
-    ScaffoldMessenger.of(context).showSnackBar(
-      generateSnackbar("Disconnecting to server and closing it."),
-    );
     socket.close();
+    ScaffoldMessenger.of(context).showSnackBar(
+      generateErrorSnackbar(
+        "Mi sono disconnesso da NAO. Il server è stato chiuso.",
+      ),
+    );
     Navigator.pop(context);
   }
 }

@@ -79,3 +79,22 @@ SnackBar generateSnackbar(String message) {
 
   return snackbar;
 }
+
+SnackBar generateErrorSnackbar(String message) {
+  Widget snackContent = Text(
+    message,
+    style: const TextStyle(fontFamily: "Halyard", color: Colors.white),
+  );
+  SnackBar snackbar = SnackBar(
+    content: snackContent,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: const Color.fromARGB(255, 163, 0, 0),
+    elevation: 0,
+    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(width: 2, color: Colors.black)),
+  );
+
+  return snackbar;
+}
