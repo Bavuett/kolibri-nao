@@ -45,7 +45,7 @@ class InfoState extends State<Info> {
                   fontSize: 24,
                 ),
               ),
-              const Text("v1.0"),
+              const Text("v1.1"),
               Container(padding: const EdgeInsets.symmetric(vertical: 5)),
               const Divider(),
               Container(padding: const EdgeInsets.symmetric(vertical: 5)),
